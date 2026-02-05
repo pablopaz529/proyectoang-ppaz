@@ -8,7 +8,9 @@
   "projects": {
     "proyectoang-ppaz": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": { "@schematics/angular:component": {
+                      "type": "component"
+      }},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
