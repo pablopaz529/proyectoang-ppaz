@@ -1,1 +1,45 @@
-<p>home works!</p>
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Bienvenido a la Filmoteca</h1>
+  <p class="text-center">Las mejores películas del momento:</p>
+
+  @if (peliculas.length > 0) {
+    
+    <div id="carruselCine" class="carousel slide shadow rounded" data-bs-ride="carousel">
+      <div class="carousel-inner rounded">
+        
+        @for (peli of peliculas; track peli.id; let i = $index) {
+          
+          <div class="carousel-item" [class.active]="i === 0">
+            
+            <img [src]="'https://image.tmdb.org/t/p/original' + peli.backdrop_path" 
+                 class="d-block w-100" 
+                 [alt]="peli.title"
+                 style="height: 500px; object-fit: cover;">
+            
+            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-3 mb-4 rounded">
+              <h3>{{ peli.title }}</h3>
+              <p>{{ peli.overview }}</p>
+            </div>
+            
+          </div>
+        }
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carruselCine" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carruselCine" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+
+  } @else {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <p class="mt-2">Trayendo estrenos...</p>
+    </div>
+  }
+</div>
