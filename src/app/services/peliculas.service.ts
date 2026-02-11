@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environments'; // Ojo: tu archivo se llama con 's' al final
+import { environment } from '../../environments/environments';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,8 +13,13 @@ export class PeliculasService {
 
   constructor() { }
 
-  // Pide las películas populares
+  // ESTA ES LA CLAVE: Acepta un 'tipo' (popular, upcoming, etc.)
+  getPeliculas(tipo: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/movie/${tipo}?api_key=${this.apiKey}&language=es-ES&page=1&region=ES`);
+  }
+  
+  // Mantenemos este por compatibilidad con el Home
   getPeliculasPopulares(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/movie/popular?api_key=${this.apiKey}&language=es-ES`);
+    return this.getPeliculas('popular');
   }
 }

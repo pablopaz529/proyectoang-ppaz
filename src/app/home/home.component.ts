@@ -1,27 +1,28 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common'; // <--- IMPORTANTE: Para que funcione el bucle *ngFor
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core'; // <--- NUEVO: Añade ChangeDetectorRef
+import { CommonModule } from '@angular/common';
 import { PeliculasService } from '../services/peliculas.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule], // <--- Si no ponemos esto, el HTML no entenderá el bucle
+  imports: [CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
   
   private peliculasService = inject(PeliculasService);
+  private cd = inject(ChangeDetectorRef); // <--- Inyectamos el detector
   
-  // Aquí guardaremos las pelis
   peliculas: any[] = [];
 
   ngOnInit(): void {
-    // Cuando arranque el componente, pedimos los datos
     this.peliculasService.getPeliculasPopulares().subscribe({
       next: (data: any) => {
         this.peliculas = data.results;
-        console.log('Películas cargadas:', this.peliculas); // Mira la consola del navegador (F12) para ver si llegan
+        console.log('Datos recibidos:', this.peliculas);
+        
+        this.cd.detectChanges(); // <---  ¡Angular, despierta y pinta esto ya!
       },
       error: (error) => {
         console.error('Error:', error);
