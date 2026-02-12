@@ -4,7 +4,6 @@ import { PeliculasService } from '../services/peliculas.service';
 
 @Component({
   selector: 'app-peliculas-lista',
-  // Quitamos standalone: true (ya es por defecto)
   imports: [CommonModule], 
   templateUrl: './peliculas-lista.component.html',
   styleUrl: './peliculas-lista.component.css'
@@ -24,7 +23,7 @@ export class PeliculasListaComponent implements OnInit {
   cargarDatos(filtro: string) {
     this.filtroActual = filtro;
     
-    // TRUCO: Vaciamos la lista para que no se mezclen pelis viejas con nuevas
+    // Vaciamos la lista para que no se mezclen pelis viejas con nuevas
     this.peliculas = []; 
     
     this.peliculasService.getPeliculas(filtro).subscribe({

@@ -13,7 +13,7 @@ export class PeliculasService {
 
   constructor() { }
 
-  // ESTA ES LA CLAVE: Acepta un 'tipo' (popular, upcoming, etc.)
+  
   getPeliculas(tipo: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/movie/${tipo}?api_key=${this.apiKey}&language=es-ES&page=1&region=ES`);
   }
