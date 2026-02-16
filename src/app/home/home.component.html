@@ -14,6 +14,7 @@
             <img [src]="'https://image.tmdb.org/t/p/original' + peli.backdrop_path" 
                  class="d-block w-100" 
                  [alt]="peli.title"
+                 [routerLink]="['/pelicula', peli.id]"
                  style="height: 500px; object-fit: cover;">
             
             <div class="carousel-caption d-block bg-dark bg-opacity-75 p-3 mb-4 rounded">

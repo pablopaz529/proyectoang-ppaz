@@ -1,10 +1,11 @@
 import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PeliculasService } from '../services/peliculas.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-peliculas-lista',
-  imports: [CommonModule], 
+  imports: [CommonModule, RouterLink], 
   templateUrl: './peliculas-lista.component.html',
   styleUrl: './peliculas-lista.component.css'
 })

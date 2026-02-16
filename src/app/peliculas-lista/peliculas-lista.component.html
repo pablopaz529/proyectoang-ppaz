@@ -3,31 +3,31 @@
   <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
     <h2 class="mb-3 mb-md-0">Catálogo de Cine</h2>
     
-    <div class="btn-group shadow-sm mt-4" role="group">
+    <div class="btn-group shadow-lg mt-4 mb-2" role="group">
       <button type="button" class="btn" 
-              [class.btn-primary]="filtroActual === 'popular'"
-              [class.btn-outline-primary]="filtroActual !== 'popular'"
+              [class.btn-dark]="filtroActual === 'popular'"
+              [class.btn-outline-dark]="filtroActual !== 'popular'"
               (click)="cargarDatos('popular')">
         Populares
       </button>
 
       <button type="button" class="btn" 
-              [class.btn-primary]="filtroActual === 'now_playing'"
-              [class.btn-outline-primary]="filtroActual !== 'now_playing'"
+              [class.btn-dark]="filtroActual === 'now_playing'"
+              [class.btn-outline-dark]="filtroActual !== 'now_playing'"
               (click)="cargarDatos('now_playing')">
         En Cartelera
       </button>
 
       <button type="button" class="btn" 
-              [class.btn-primary]="filtroActual === 'upcoming'"
-              [class.btn-outline-primary]="filtroActual !== 'upcoming'"
+              [class.btn-dark]="filtroActual === 'upcoming'"
+              [class.btn-outline-dark]="filtroActual !== 'upcoming'"
               (click)="cargarDatos('upcoming')">
         Próximamente
       </button>
       
       <button type="button" class="btn" 
-              [class.btn-primary]="filtroActual === 'top_rated'"
-              [class.btn-outline-primary]="filtroActual !== 'top_rated'"
+              [class.btn-dark]="filtroActual === 'top_rated'"
+              [class.btn-outline-dark]="filtroActual !== 'top_rated'"
               (click)="cargarDatos('top_rated')">
         Top Valoradas
       </button>
@@ -38,12 +38,16 @@
     
     @for (peli of peliculas; track peli.id) {
       <div class="col">
-        <div class="card h-100 shadow-sm border-0">
+        <div class="card h-100 shadow border-0">
           
           @if (peli.poster_path) {
             <img [src]="'https://image.tmdb.org/t/p/w500' + peli.poster_path" 
                  class="card-img-top rounded" 
-                 [alt]="peli.title">
+                 [alt]="peli.title"
+                 [routerLink]= "['/pelicula', peli.id]">
+                 
+
+            
           } @else {
              <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded" style="height: 300px;">
                Sin Imagen
