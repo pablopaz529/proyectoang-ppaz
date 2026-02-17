@@ -30,12 +30,11 @@ export class PeliculasService {
 
   }
 
-  /**
-   * Envía los datos del formulario de contacto a Formspree
-   * Cumple con el requisito de envío real de datos.
-   */
-  enviarMensajeContacto(datos: any): Observable<any> {
-    const endpoint = 'https://formspree.io/f/xykdjzgq'; 
-    return this.http.post(endpoint, datos);
+  
+  buscarPeliculas(texto: string): Observable<any> {
+    // Usamos el endpoint /search/movie para buscar muchas más películas
+    return this.http.get(`${this.apiUrl}/search/movie?api_key=${this.apiKey}&language=es-ES&query=${texto}&page=1&include_adult=false`);
   }
+
+  
 }

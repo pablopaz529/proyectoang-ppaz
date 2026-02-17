@@ -1,47 +1,55 @@
 <div class="container mt-5 mb-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
+      
       <div class="card shadow border-0">
         <div class="card-header bg-dark text-white p-4">
           <h2 class="mb-0"><i class="bi bi-envelope-fill text-warning me-2"></i> Contáctanos</h2>
         </div>
+        
         <div class="card-body p-4">
+          <p class="text-muted mb-4">Rellena el formulario y te responderemos pronto.</p>
+
           <form [formGroup]="formularioContacto" (ngSubmit)="enviarFormulario()">
+            
             <div class="mb-3">
               <label class="form-label fw-bold">Nombre Completo</label>
-              <input type="text" class="form-control" [class.is-invalid]="tieneError('nombre')" formControlName="nombre">
-              <div class="invalid-feedback">El nombre es obligatorio (mín. 3 caracteres).</div>
+              <input type="text" class="form-control" [class.is-invalid]="tieneError('nombre')" formControlName="nombre" placeholder="Tu nombre">
+              @if (tieneError('nombre')) { <div class="invalid-feedback">Mínimo 3 letras.</div> }
             </div>
 
             <div class="mb-3">
               <label class="form-label fw-bold">Correo Electrónico</label>
-              <input type="email" class="form-control" [class.is-invalid]="tieneError('email')" formControlName="email">
-              <div class="invalid-feedback">Introduce un email válido.</div>
+              <input type="email" class="form-control" [class.is-invalid]="tieneError('email')" formControlName="email" placeholder="nombre@ejemplo.com">
+              @if (tieneError('email')) { <div class="invalid-feedback">Email inválido.</div> }
             </div>
 
             <div class="mb-3">
               <label class="form-label fw-bold">Asunto</label>
               <select class="form-select" [class.is-invalid]="tieneError('asunto')" formControlName="asunto">
                 <option value="">Selecciona un motivo...</option>
-                <option value="Soporte">Soporte Técnico</option>
-                <option value="Info">Información</option>
+                <option value="Información">Información general</option>
+                <option value="Soporte">Soporte técnico</option>
+                <option value="Otro">Otro asunto</option>
               </select>
-              <div class="invalid-feedback">Selecciona un asunto.</div>
+              @if (tieneError('asunto')) { <div class="invalid-feedback">Selecciona un asunto.</div> }
             </div>
 
             <div class="mb-3">
               <label class="form-label fw-bold">Mensaje</label>
-              <textarea class="form-control" rows="4" [class.is-invalid]="tieneError('mensaje')" formControlName="mensaje"></textarea>
-              <div class="invalid-feedback">El mensaje debe tener al menos 10 caracteres.</div>
+              <textarea class="form-control" rows="5" [class.is-invalid]="tieneError('mensaje')" formControlName="mensaje" placeholder="Escribe aquí..."></textarea>
+              @if (tieneError('mensaje')) { <div class="invalid-feedback">Mínimo 10 caracteres.</div> }
             </div>
 
             <div class="d-grid gap-2 mt-4">
-              <button type="submit" class="btn btn-warning fw-bold py-2">Enviar Mensaje</button>
-              <button type="button" class="btn btn-outline-secondary" routerLink="/home">Cancelar</button>
+              <button type="submit" class="btn btn-warning fw-bold text-dark py-2">Enviar Mensaje</button>
+              <button type="button" class="btn btn-outline-secondary py-2" routerLink="/home">Cancelar</button>
             </div>
+
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </div>

@@ -1,29 +1,50 @@
 @if (pelicula) {
-  <div class="position-relative p-5 text-white bg-dark mb-4 shadow" 
-       [style.background-image]="'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(https://image.tmdb.org/t/p/original' + pelicula.backdrop_path + ')'"
-       style="background-size: cover; background-position: center;">
+  <div
+    class="position-relative p-5 text-white bg-dark mb-4 shadow"
+    [style.background-image]="
+      'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(https://image.tmdb.org/t/p/original' +
+      pelicula.backdrop_path +
+      ')'
+    "
+    style="background-size: cover; background-position: center"
+  >
     <div class="container">
       <h1 class="display-4 fw-bold">{{ pelicula.title }}</h1>
-      @if (pelicula.tagline) { <p class="lead fst-italic">"{{ pelicula.tagline }}"</p> }
+      @if (pelicula.tagline) {
+        <p class="lead fst-italic mt-3 opacity-75">"{{ pelicula.tagline }}"</p>
+      }
     </div>
   </div>
 
   <div class="container mb-5">
     <div class="row gx-lg-5">
-      
       <div class="col-10 mx-auto col-md-6 col-lg-4 mb-4 mb-md-0 align-self-start">
         @if (pelicula.poster_path) {
-          <img [src]="'https://image.tmdb.org/t/p/original' + pelicula.poster_path" 
-               [alt]="pelicula.title" 
-               class="img-fluid rounded shadow-lg w-100">
+          <img
+            [src]="'https://image.tmdb.org/t/p/original' + pelicula.poster_path"
+            [alt]="pelicula.title"
+            class="img-fluid rounded shadow-lg w-100"
+          />
         }
       </div>
 
       <div class="col-12 col-md-6 col-lg-8 d-flex flex-column">
-        
         <div>
-          <h2 class="mb-3">{{ pelicula.title }}</h2> 
-          
+          <h2 class="mb-3 d-flex align-items-center gap-3">
+            {{ pelicula.title }}
+
+            <button
+              class="btn p-0 border-0 bg-transparent"
+              (click)="toggleFavorito()"
+              title="Añadir o quitar de favoritos"
+            >
+              @if (esFavorito) {
+                <i class="bi bi-heart-fill text-warning fs-3"></i>
+              } @else {
+                <i class="bi bi-heart text-warning fs-3"></i>
+              }
+            </button>
+          </h2>
           <div class="mb-3">
             @for (genero of pelicula.genres; track genero.id) {
               <span class="badge bg-secondary me-2">{{ genero.name }}</span>
@@ -31,9 +52,14 @@
           </div>
 
           <div class="d-flex align-items-center mb-4 text-muted flex-wrap">
-            <span class="me-3"><i class="bi bi-calendar-event"></i> {{ pelicula.release_date | date:'yyyy' }}</span>
+            <span class="me-3"
+              ><i class="bi bi-calendar-event"></i> {{ pelicula.release_date | date: 'yyyy' }}</span
+            >
             <span class="me-3"><i class="bi bi-clock"></i> {{ pelicula.runtime }} min</span>
-            <span><i class="bi bi-star-fill text-warning"></i> {{ pelicula.vote_average | number:'1.1-1' }}</span>
+            <span
+              ><i class="bi bi-star-fill text-warning"></i>
+              {{ pelicula.vote_average | number: '1.1-1' }}</span
+            >
           </div>
 
           <h4>Sinopsis</h4>
@@ -44,8 +70,16 @@
               <div class="card-body">
                 <h5 class="card-title">Información Financiera</h5>
                 <div class="row">
-                  <div class="col-6"><strong>Presupuesto:</strong><br>{{ pelicula.budget | currency:'EUR':'symbol':'1.0-0' }}</div>
-                  <div class="col-6"><strong>Recaudación:</strong><br>{{ pelicula.revenue | currency:'USD':'symbol':'1.0-0' }}</div>
+                  <div class="col-12 col-xl-6">
+                    <strong>Presupuesto:</strong><br />{{
+                      pelicula.budget | currency: 'USD' : 'symbol' : '1.0-0'
+                    }}
+                  </div>
+                  <div class="col-12 col-xl-6">
+                    <strong>Recaudación:</strong><br />{{
+                      pelicula.revenue | currency: 'USD' : 'symbol' : '1.0-0'
+                    }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -57,15 +91,12 @@
             <i class="bi bi-arrow-left"></i> Volver al catálogo
           </button>
         </div>
-
       </div>
     </div>
   </div>
-
-
 } @else {
   <div class="container mt-5 text-center">
-    <div class="spinner-border text-primary" role="status"></div>
-    <p>Cargando detalles...</p>
+    <div class="spinner-border text-warning" role="status"></div>
+    <p class="mt-2">Cargando detalles...</p>
   </div>
 }

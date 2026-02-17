@@ -1,17 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
-    
     <a class="navbar-brand d-flex align-items-center" routerLink="/home">
-      <img src="https://cdn-icons-png.flaticon.com/512/2503/2503508.png" 
-           alt="Logo Filmoteca" 
-           width="80" 
-           height="80" 
-           class="d-inline-block align-text-top me-2">
-      
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/2503/2503508.png"
+        alt="Logo Filmoteca"
+        width="80"
+        height="80"
+        class="d-inline-block align-text-top me-2"
+      />
+
       <span class="fw-bold text-warning fs-4">Filmoteca</span>
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#menuNavegacion"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -26,8 +32,12 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/contacto" routerLinkActive="active">Contacto</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/favoritos" routerLinkActive="active">
+            Favoritos <i class="bi bi-heart-fill text-warning small"></i>
+          </a>
+        </li>
       </ul>
     </div>
-
   </div>
 </nav>

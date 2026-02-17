@@ -34,6 +34,29 @@
     </div>
   </div>
 
+  <div class="row mb-4 g-3">
+    
+    <div class="col-12 col-md-6">
+      <div class="input-group shadow-sm">
+        <span class="input-group-text bg-white border-end-0">
+          <i class="bi bi-search"></i>
+        </span>
+        <input type="text" 
+               class="form-control border-start-0" 
+               placeholder="Buscar película por título..." 
+               (input)="buscar($event)">
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 d-flex sh justify-content-md-end gap-2">
+      <button class="btn btn-outline-secondary d-flex align-items-center" (click)="ordenar('titulo')">
+        <i class="bi bi-sort-alpha-down me-2"></i> A-Z
+      </button>
+      <button class="btn btn-outline-secondary d-flex align-items-center" (click)="ordenar('puntuacion')">
+        <i class="bi bi-star-fill text-warning me-2"></i> Mejor Nota
+      </button>
+    </div>
+  </div>
   <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-4">
     
     @for (peli of peliculas; track peli.id) {
@@ -45,9 +68,6 @@
                  class="card-img-top rounded" 
                  [alt]="peli.title"
                  [routerLink]= "['/pelicula', peli.id]">
-                 
-
-            
           } @else {
              <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded" style="height: 300px;">
                Sin Imagen
@@ -70,8 +90,13 @@
     
     @empty {
       <div class="col-12 text-center py-5">
-        <div class="spinner-border text-primary" role="status"></div>
-        <p class="mt-2 text-muted">Cargando películas...</p>
+        @if (textoBusqueda) {
+          <i class="bi bi-search fs-1 text-muted"></i>
+          <p class="mt-2 text-muted">No se encontraron películas con ese nombre.</p>
+        } @else {
+          <div class="spinner-border text-primary" role="status"></div>
+          <p class="mt-2 text-muted">Cargando películas...</p>
+        }
       </div>
     }
 

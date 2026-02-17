@@ -13,7 +13,10 @@ import { RouterLink } from '@angular/router';
 export class HomeComponent implements OnInit {
   
   private peliculasService = inject(PeliculasService);
-  private cd = inject(ChangeDetectorRef); // <--- Inyectamos el detector
+
+  // Herramienta para forzar manualmente la actualización de la vista.
+  // A veces, tras una operación asíncrona compleja, Angular necesita un "empujón" para repintar.
+  private cd = inject(ChangeDetectorRef); 
   
   peliculas: any[] = [];
 
@@ -22,8 +25,10 @@ export class HomeComponent implements OnInit {
       next: (data: any) => {
         this.peliculas = data.results;
         console.log('Datos recibidos:', this.peliculas);
-        
-        this.cd.detectChanges(); // <---  ¡Angular, despierta y pinta esto ya!
+
+        // Forzamos la detección de cambios para asegurar que el Carrusel 
+        // reciba las imágenes inmediatamente y no se quede en blanco.
+        this.cd.detectChanges(); 
       },
       error: (error) => {
         console.error('Error:', error);

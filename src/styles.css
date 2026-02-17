@@ -1,3 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
 
+/* ESTILOS GLOBALES PARA LAS TARJETAS DE PELÍCULAS */
+/* Así se verán igual en Catálogo y en Favoritos */
+
+.poster-container {
+    height: 350px; 
+    position: relative;
+    overflow: hidden;
+    background-color: #212529; 
+}
+
+.poster-img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center top;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
