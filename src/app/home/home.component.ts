@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core'; // <--- NUEVO: Añade ChangeDetectorRef
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { PeliculasService } from '../services/peliculas.service';
 import { RouterLink } from '@angular/router';

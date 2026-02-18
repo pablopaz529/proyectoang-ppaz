@@ -42,7 +42,7 @@ export class PeliculaDetalleComponent implements OnInit {
     });
   }
 
-  // <--- 5. FUNCIÓN DEL BOTÓN
+  // FUNCIÓN DEL BOTÓN
   toggleFavorito() {
     if (this.esFavorito) {
       this.favoritosService.removeFavorito(this.pelicula.id);

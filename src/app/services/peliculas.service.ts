@@ -18,7 +18,7 @@ export class PeliculasService {
     return this.http.get(`${this.apiUrl}/movie/${tipo}?api_key=${this.apiKey}&language=es-ES&page=1&region=ES`);
   }
   
-  // Mantenemos este por compatibilidad con el Home
+  
   getPeliculasPopulares(): Observable<any> {
     return this.getPeliculas('popular');
   }
